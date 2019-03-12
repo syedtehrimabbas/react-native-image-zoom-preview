@@ -1,0 +1,36 @@
+{
+  "name": "react-native-image-zoom-preview",
+  "version": "0.0.1",
+  "description": "Display zoomed image in transparent modal window on image tap also image is zoom able",
+  "main": "ZoomImagePreview.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/syedtehrimabbas/DemoApp.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "imagezoom",
+    "image",
+    "zoom",
+    "preview",
+    "pinchtozoom"
+  ],
+  "author": "Devtehrim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/syedtehrimabbas"
+  },
+  "homepage": "https://github.com/syedtehrimabbas",
+  "peerDependencies": {
+    "react-native": ">=0.26.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react-native-image-pan-zoom": "^2.1.11"
+  }
+}
