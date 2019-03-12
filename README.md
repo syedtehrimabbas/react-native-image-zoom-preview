@@ -2,7 +2,7 @@
 react-native-image-zoom-preview provide functionality to Display zoom image in transparent modal window on image able also you can add water mark to your image.
 
 
-#Installation
+# Installation
 
 Automatically
 
@@ -12,7 +12,7 @@ Install library from npm
 
 npm i react-native-image-zoom-preview
 
-#how to use?
+# how to use?
 
 import ZoomImagePreview from "react-native-image-zoom-preview";
 
