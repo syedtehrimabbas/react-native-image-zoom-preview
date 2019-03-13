@@ -17,15 +17,40 @@ npm i react-native-image-zoom-preview
 import ZoomImagePreview from "react-native-image-zoom-preview";
 
 
-<ZoomImagePreview
+       constructor(props) {
+        super(props)
+        this.state = {
+            currentIndex: 0,
+            images: [],
+            isPreview: false,
+            previewSource: '',
+            imageHeight: 0,
+            imageWidth: 0,
+        }
+    }
+    
+    <ZoomImagePreview
                     waterMarkStyle={styles.waterMarkStyle}
                     showWatermark={true}
                     waterMarkSource={require('../assets/images/watermark.png')}
-                    visible={this.state.isPreview}
-                    source={{uri: previewSource}}
+                    visible={isPreview} source={{uri: previewSource}}
                     close={this.onClosePreview.bind(this)}
+                    height={this.state.imageHeight}
+                    width={this.state.imageWidth}
                 />
                 
-        onClosePreview(source) {
-        this.setState({isPreview: !this.state.isPreview})
+       onClosePreview(images) {
+        console.log("images", images)
+        this.setState({
+            isPreview: !this.state.isPreview,
+            previewSource: images[this.state.currentIndex],
+        })
+        Image.getSize(images[this.state.currentIndex], (width, height) => {
+            console.log("width:",width)
+            console.log("height:",height)
+            this.setState({
+                imageWidth: width,
+                imageHeight: height-10
+            })
+        });
     }
