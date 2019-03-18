@@ -1,7 +1,16 @@
 /*react-native-image-pan-zoom
 * Syed tehrim abbas*/
 import React, {Component} from 'react';
-import {Modal, View, TouchableWithoutFeedback, StyleSheet, Image, Dimensions, ImageBackground,Alert} from 'react-native';
+import {
+    Modal,
+    View,
+    TouchableWithoutFeedback,
+    StyleSheet,
+    Image,
+    Dimensions,
+    ImageBackground,
+    Alert
+} from 'react-native';
 import PropTypes from 'prop-types';
 import ImageZoom from 'react-native-image-pan-zoom';
 
@@ -25,30 +34,35 @@ const styles = StyleSheet.create({
 
 export default class ZoomImagePreview extends Component {
     render() {
-        let {source, visible, close, imageStyle, overlayStyle, waterMarkSource, waterMarkStyle, showWatermark,width,height} = this.props;
+        let {source, visible, imageStyle, overlayStyle, waterMarkSource, waterMarkStyle, showWatermark, width, height, onRequestClose} = this.props;
 
         return (
             <Modal
                 animationType={'fade'}
                 transparent={true}
-                onRequestClose={close}
+                onRequestClose={onRequestClose}
                 visible={visible}>
                 <View style={[styles.overlay, overlayStyle]}>
                     <ImageZoom cropWidth={Dimensions.get('window').width}
                                cropHeight={Dimensions.get('window').height}
                                imageWidth={Dimensions.get('window').width}
                                imageHeight={Dimensions.get('window').height}>
-                        <TouchableWithoutFeedback onPress={close}>
-                            <ImageBackground imageStyle={styles.backgroundImageMargin} resizeMode={'contain'}
+                        <TouchableWithoutFeedback style={{
+                            width: width,
+                            height: height
+                        }} onPress={onRequestClose}>
+                            <ImageBackground imageStyle={[styles.image, styles.backgroundImageMargin]}
+                                             resizeMode={'contain'}
                                              source={source}
                                              style={[styles.image, imageStyle]}>
-                                <TouchableWithoutFeedback style={[waterMarkStyle]} onPress={close}>
+                                <TouchableWithoutFeedback style={[waterMarkStyle]}>
                                     <Image resizeMode={'contain'} source={waterMarkSource}
-                                           style={[ {
+                                           style={{
                                                width: width,
                                                height: height
-                                           }]}/>
+                                           }}/>
                                 </TouchableWithoutFeedback>
+
                             </ImageBackground>
                         </TouchableWithoutFeedback>
                     </ImageZoom>
@@ -60,7 +74,7 @@ export default class ZoomImagePreview extends Component {
 ZoomImagePreview.propTypes = {
     indicator: PropTypes.func,
     visible: PropTypes.bool,
-    close: PropTypes.func,
+    onRequestClose: PropTypes.func,
     source: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.object
@@ -73,8 +87,8 @@ ZoomImagePreview.propTypes = {
         PropTypes.object
     ]),
     showWatermark: PropTypes.bool,
-    height:PropTypes.number,
-    width:PropTypes.number,
+    height: PropTypes.number,
+    width: PropTypes.number,
     imageStyle: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.object
